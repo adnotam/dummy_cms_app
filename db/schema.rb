@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_103815) do
+ActiveRecord::Schema.define(version: 2018_09_26_104752) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_103815) do
     t.string "crop_from"
     t.string "crop_size"
     t.string "render_size"
+    t.boolean "searchable", default: true
     t.index ["picture_id"], name: "index_alchemy_essence_pictures_on_picture_id"
   end
 
@@ -169,6 +170,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_103815) do
     t.integer "updater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "searchable", default: true
   end
 
   create_table "alchemy_essence_selects", force: :cascade do |t|
@@ -191,6 +193,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_103815) do
     t.integer "updater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "searchable", default: true
   end
 
   create_table "alchemy_folded_pages", force: :cascade do |t|

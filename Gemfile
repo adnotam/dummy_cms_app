@@ -69,3 +69,6 @@ gem 'alchemy-devise',
     github: 'AlchemyCMS/alchemy-devise',
     branch: '4.1-stable'
 
+gem 'alchemy-pg_search',
+    github: 'adnotam/alchemy-pg_search',
+    branch: 'custom'
