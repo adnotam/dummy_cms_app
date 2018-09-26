@@ -6,3 +6,11 @@
   unique: true
   elements: [article]
   autogenerate: [article]
+
+- name: search
+  searchresults: true
+  unique: true
+  elements:
+    - searchresults
+  autogenerate:
+    - searchresults
