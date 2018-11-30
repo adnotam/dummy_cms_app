@@ -71,4 +71,4 @@ gem 'alchemy-devise',
 
 gem 'alchemy-pg_search',
     github: 'adnotam/alchemy-pg_search',
-    branch: 'custom'
+    branch: 'alchemy_4'

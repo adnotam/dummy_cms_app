@@ -38,7 +38,7 @@ GIT
 GIT
   remote: https://github.com/adnotam/alchemy-pg_search.git
   revision: bdb5831e1f420f7f70e5298e94a8c91a8138faf5
-  branch: custom
+  branch: alchemy_4
   specs:
     alchemy-pg_search (1.2.0)
       alchemy_cms (> 3.2, < 5.0)
