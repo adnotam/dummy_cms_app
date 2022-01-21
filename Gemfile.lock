@@ -51,15 +51,15 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    alchemy-devise (5.0.1)
-      alchemy_cms (>= 4.1.0, < 5.1)
+    alchemy-devise (5.1.0)
+      alchemy_cms (>= 5.0.0, < 6)
       devise (>= 4.7.1, < 5)
-    alchemy_cms (5.0.4)
+    alchemy_cms (5.1.4)
       active_model_serializers (~> 0.10.0)
       acts_as_list (>= 0.3, < 2)
       awesome_nested_set (~> 3.1)
       cancancan (>= 2.1, < 4.0)
-      coffee-rails (~> 4.0, < 5.0)
+      coffee-rails (>= 4.0, < 6.0)
       dragonfly (~> 1.0, >= 1.0.7)
       dragonfly_svg (~> 0.0.4)
       gutentag (~> 2.2, >= 2.2.1)
@@ -74,7 +74,6 @@ GEM
       request_store (~> 1.2)
       responders (>= 2.0, < 4.0)
       sassc-rails (~> 2.1)
-      select2-rails (>= 3.5.9.1, < 4.0)
       simple_form (>= 4.0, < 6)
       sprockets (>= 3.0, < 5)
       turbolinks (>= 2.5)
@@ -257,7 +256,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    select2-rails (3.5.11)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -309,8 +307,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  alchemy-devise (~> 5.0.0)
-  alchemy_cms (~> 5.0.0)
+  alchemy-devise (~> 5.1.0)
+  alchemy_cms (~> 5.1.0)
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
