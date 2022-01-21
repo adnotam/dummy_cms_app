@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_163315) do
+ActiveRecord::Schema.define(version: 2022_01_21_170410) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -84,15 +84,27 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.text "cached_tag_list"
     t.integer "parent_element_id"
     t.boolean "fixed", default: false, null: false
+    t.integer "page_version_id", null: false
     t.index ["cell_id"], name: "index_alchemy_elements_on_cell_id"
     t.index ["fixed"], name: "index_alchemy_elements_on_fixed"
     t.index ["page_id", "parent_element_id"], name: "index_alchemy_elements_on_page_id_and_parent_element_id"
     t.index ["page_id", "position"], name: "index_elements_on_page_id_and_position"
+    t.index ["page_version_id", "parent_element_id"], name: "idx_alchemy_elements_on_page_version_id_and_parent_element_id"
+    t.index ["page_version_id", "position"], name: "idx_alchemy_elements_on_page_version_id_and_position"
   end
 
   create_table "alchemy_elements_alchemy_pages", id: false, force: :cascade do |t|
     t.integer "element_id"
     t.integer "page_id"
+  end
+
+  create_table "alchemy_essence_audios", force: :cascade do |t|
+    t.integer "attachment_id"
+    t.boolean "controls", default: true, null: false
+    t.boolean "autoplay", default: false
+    t.boolean "loop", default: false, null: false
+    t.boolean "muted", default: false, null: false
+    t.index ["attachment_id"], name: "index_alchemy_essence_audios_on_attachment_id"
   end
 
   create_table "alchemy_essence_booleans", force: :cascade do |t|
@@ -122,6 +134,14 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "link_text"
     t.index ["attachment_id"], name: "index_alchemy_essence_files_on_attachment_id"
+  end
+
+  create_table "alchemy_essence_headlines", force: :cascade do |t|
+    t.text "body"
+    t.integer "level"
+    t.integer "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "alchemy_essence_htmls", force: :cascade do |t|
@@ -187,6 +207,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "searchable", default: true
+    t.text "sanitized_body"
   end
 
   create_table "alchemy_essence_selects", force: :cascade do |t|
@@ -212,11 +233,40 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.boolean "searchable", default: true
   end
 
+  create_table "alchemy_essence_videos", force: :cascade do |t|
+    t.integer "attachment_id"
+    t.string "width"
+    t.string "height"
+    t.boolean "allow_fullscreen", default: true, null: false
+    t.boolean "autoplay", default: false, null: false
+    t.boolean "controls", default: true, null: false
+    t.boolean "loop", default: false, null: false
+    t.boolean "muted", default: false, null: false
+    t.string "preload"
+    t.index ["attachment_id"], name: "index_alchemy_essence_videos_on_attachment_id"
+  end
+
   create_table "alchemy_folded_pages", force: :cascade do |t|
     t.integer "page_id", null: false
     t.integer "user_id", null: false
     t.boolean "folded", default: false, null: false
     t.index ["page_id", "user_id"], name: "index_alchemy_folded_pages_on_page_id_and_user_id", unique: true
+  end
+
+  create_table "alchemy_ingredients", force: :cascade do |t|
+    t.integer "element_id", null: false
+    t.string "type", null: false
+    t.string "role", null: false
+    t.text "value"
+    t.json "data"
+    t.string "related_object_type"
+    t.integer "related_object_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["element_id", "role"], name: "index_alchemy_ingredients_on_element_id_and_role", unique: true
+    t.index ["element_id"], name: "index_alchemy_ingredients_on_element_id"
+    t.index ["related_object_id", "related_object_type"], name: "idx_alchemy_ingredient_relation"
+    t.index ["type"], name: "index_alchemy_ingredients_on_type"
   end
 
   create_table "alchemy_languages", force: :cascade do |t|
@@ -274,6 +324,16 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.index ["updater_id"], name: "index_alchemy_nodes_on_updater_id"
   end
 
+  create_table "alchemy_page_versions", force: :cascade do |t|
+    t.integer "page_id", null: false
+    t.datetime "public_on"
+    t.datetime "public_until"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_alchemy_page_versions_on_page_id"
+    t.index ["public_on", "public_until"], name: "index_alchemy_page_versions_on_public_on_and_public_until"
+  end
+
   create_table "alchemy_pages", force: :cascade do |t|
     t.string "name"
     t.string "urlname"
@@ -300,13 +360,12 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
     t.integer "language_id", null: false
     t.text "cached_tag_list"
     t.datetime "published_at"
-    t.datetime "public_on"
-    t.datetime "public_until"
+    t.datetime "legacy_public_on"
+    t.datetime "legacy_public_until"
     t.datetime "locked_at"
     t.index ["language_id"], name: "index_pages_on_language_id"
     t.index ["locked_at", "locked_by"], name: "index_alchemy_pages_on_locked_at_and_locked_by"
     t.index ["parent_id", "lft"], name: "index_pages_on_parent_id_and_lft"
-    t.index ["public_on", "public_until"], name: "index_alchemy_pages_on_public_on_and_public_until"
     t.index ["rgt"], name: "index_alchemy_pages_on_rgt"
     t.index ["urlname"], name: "index_pages_on_urlname"
   end
@@ -425,6 +484,17 @@ ActiveRecord::Schema.define(version: 2022_01_21_163315) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "alchemy_cells", "alchemy_pages", column: "page_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "alchemy_contents", "alchemy_elements", column: "element_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "alchemy_elements", "alchemy_cells", column: "cell_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "alchemy_elements", "alchemy_page_versions", column: "page_version_id", on_delete: :cascade
+  add_foreign_key "alchemy_elements", "alchemy_pages", column: "page_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "alchemy_essence_nodes", "alchemy_nodes", column: "node_id"
   add_foreign_key "alchemy_essence_pages", "alchemy_pages", column: "page_id"
+  add_foreign_key "alchemy_ingredients", "alchemy_elements", column: "element_id", on_delete: :cascade
+  add_foreign_key "alchemy_nodes", "alchemy_languages", column: "language_id"
+  add_foreign_key "alchemy_nodes", "alchemy_pages", column: "page_id", on_delete: :cascade
+  add_foreign_key "alchemy_page_versions", "alchemy_pages", column: "page_id", on_delete: :cascade
+  add_foreign_key "alchemy_pages", "alchemy_languages", column: "language_id"
   add_foreign_key "alchemy_picture_thumbs", "alchemy_pictures", column: "picture_id"
 end

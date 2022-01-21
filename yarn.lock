@@ -2,11 +2,13 @@
 # yarn lockfile v1
 
 
-"@alchemy_cms/admin@~5.2.5":
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/@alchemy_cms/admin/-/admin-5.2.5.tgz#52464042e191a842795167be834421d6b1d30f99"
-  integrity sha512-FijVPrgOfZ8qzC774FsXInUvvUKG8hNknFZxqBUi1VTpzT3wpysQmEh8wZanhcAvxom88I74NjJMTUHDEDWviQ==
+"@alchemy_cms/admin@~6.0.0-rc4":
+  version "6.0.0-rc4"
+  resolved "https://registry.yarnpkg.com/@alchemy_cms/admin/-/admin-6.0.0-rc4.tgz#0bbc9b12e6b00ad6a2531f8464cb9dc3f4a1554f"
+  integrity sha512-fcmamr1fUS06DzYi8hg6d0ZdVnL1Z6ps1+bchLRDwUwAJNqJ9hNcfAR3uOc8W4vYGt+L52ekuLbqwnd3BCn1cw==
   dependencies:
+    flatpickr "^4.6.9"
+    lodash-es "^4.17.21"
     sortablejs "^1.10.2"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.16.7":
@@ -2915,6 +2917,11 @@ findup-sync@^3.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
+flatpickr@^4.6.9:
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
+
 flatted@^3.2.2:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.4.tgz#28d9969ea90661b5134259f312ab6aa7929ac5e2"
@@ -3937,6 +3944,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.debounce@^4.0.8:
   version "4.0.8"
