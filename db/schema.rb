@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_155114) do
+ActiveRecord::Schema.define(version: 2022_01_21_162549) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.string "name"
     t.integer "position"
     t.integer "page_id", null: false
-    t.boolean "public", default: true
-    t.boolean "folded", default: false
-    t.boolean "unique", default: false
+    t.boolean "public", default: true, null: false
+    t.boolean "folded", default: false, null: false
+    t.boolean "unique", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
   create_table "alchemy_essence_richtexts", force: :cascade do |t|
     t.text "body"
     t.text "stripped_body"
-    t.boolean "public"
+    t.boolean "public", default: false, null: false
     t.integer "creator_id"
     t.integer "updater_id"
     t.datetime "created_at", precision: 6, null: false
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.string "link"
     t.string "link_title"
     t.string "link_class_name"
-    t.boolean "public", default: false
+    t.boolean "public", default: false, null: false
     t.string "link_target"
     t.integer "creator_id"
     t.integer "updater_id"
@@ -215,7 +215,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
   create_table "alchemy_folded_pages", force: :cascade do |t|
     t.integer "page_id", null: false
     t.integer "user_id", null: false
-    t.boolean "folded", default: false
+    t.boolean "folded", default: false, null: false
     t.index ["page_id", "user_id"], name: "index_alchemy_folded_pages_on_page_id_and_user_id", unique: true
   end
 
@@ -224,12 +224,12 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.string "language_code"
     t.string "frontpage_name"
     t.string "page_layout", default: "intro"
-    t.boolean "public", default: false
+    t.boolean "public", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"
     t.integer "updater_id"
-    t.boolean "default", default: false
+    t.boolean "default", default: false, null: false
     t.string "country_code", default: "", null: false
     t.integer "site_id", null: false
     t.string "locale"
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.string "urlname"
     t.string "title"
     t.string "language_code"
-    t.boolean "language_root"
+    t.boolean "language_root", default: false, null: false
     t.string "page_layout"
     t.text "meta_keywords"
     t.text "meta_description"
@@ -288,10 +288,10 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.integer "parent_id"
     t.integer "depth"
     t.integer "locked_by"
-    t.boolean "restricted", default: false
-    t.boolean "robot_index", default: true
-    t.boolean "robot_follow", default: true
-    t.boolean "sitemap", default: true
+    t.boolean "restricted", default: false, null: false
+    t.boolean "robot_index", default: true, null: false
+    t.boolean "robot_follow", default: true, null: false
+    t.boolean "sitemap", default: true, null: false
     t.boolean "layoutpage", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -309,6 +309,14 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.index ["public_on", "public_until"], name: "index_alchemy_pages_on_public_on_and_public_until"
     t.index ["rgt"], name: "index_alchemy_pages_on_rgt"
     t.index ["urlname"], name: "index_pages_on_urlname"
+  end
+
+  create_table "alchemy_picture_thumbs", force: :cascade do |t|
+    t.integer "picture_id", null: false
+    t.string "signature", null: false
+    t.text "uid", null: false
+    t.index ["picture_id"], name: "index_alchemy_picture_thumbs_on_picture_id"
+    t.index ["signature"], name: "index_alchemy_picture_thumbs_on_signature", unique: true
   end
 
   create_table "alchemy_pictures", force: :cascade do |t|
@@ -332,9 +340,9 @@ ActiveRecord::Schema.define(version: 2022_01_21_155114) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "public", default: false
+    t.boolean "public", default: false, null: false
     t.text "aliases"
-    t.boolean "redirect_to_primary_host"
+    t.boolean "redirect_to_primary_host", default: false, null: false
     t.index ["host", "public"], name: "alchemy_sites_public_hosts_idx"
     t.index ["host"], name: "index_alchemy_sites_on_host"
   end
