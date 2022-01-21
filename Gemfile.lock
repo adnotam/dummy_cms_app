@@ -51,7 +51,7 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    alchemy-devise (4.6.0)
+    alchemy-devise (5.0.1)
       alchemy_cms (>= 4.1.0, < 5.1)
       devise (>= 4.7.1, < 5)
     alchemy_cms (4.6.5)
@@ -300,7 +300,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  alchemy-devise (~> 4.6.0)
+  alchemy-devise (~> 5.0.0)
   alchemy_cms (~> 4.6.0)
   bootsnap (>= 1.1.0)
   byebug
