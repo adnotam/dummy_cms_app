@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_152801) do
+ActiveRecord::Schema.define(version: 2022_01_21_153716) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -143,6 +143,13 @@ ActiveRecord::Schema.define(version: 2022_01_21_152801) do
     t.integer "updater_id"
   end
 
+  create_table "alchemy_essence_pages", force: :cascade do |t|
+    t.integer "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_alchemy_essence_pages_on_page_id"
+  end
+
   create_table "alchemy_essence_pictures", force: :cascade do |t|
     t.integer "picture_id"
     t.string "caption"
@@ -231,6 +238,34 @@ ActiveRecord::Schema.define(version: 2022_01_21_152801) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_alchemy_legacy_page_urls_on_page_id"
     t.index ["urlname"], name: "index_alchemy_legacy_page_urls_on_urlname"
+  end
+
+  create_table "alchemy_nodes", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "url"
+    t.boolean "nofollow", default: false, null: false
+    t.boolean "external", default: false, null: false
+    t.boolean "folded", default: false, null: false
+    t.integer "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "page_id"
+    t.integer "language_id", null: false
+    t.integer "creator_id"
+    t.integer "updater_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "site_id", null: false
+    t.index ["creator_id"], name: "index_alchemy_nodes_on_creator_id"
+    t.index ["language_id"], name: "index_alchemy_nodes_on_language_id"
+    t.index ["lft"], name: "index_alchemy_nodes_on_lft"
+    t.index ["page_id"], name: "index_alchemy_nodes_on_page_id"
+    t.index ["parent_id"], name: "index_alchemy_nodes_on_parent_id"
+    t.index ["rgt"], name: "index_alchemy_nodes_on_rgt"
+    t.index ["site_id"], name: "index_alchemy_nodes_on_site_id"
+    t.index ["updater_id"], name: "index_alchemy_nodes_on_updater_id"
   end
 
   create_table "alchemy_pages", force: :cascade do |t|
