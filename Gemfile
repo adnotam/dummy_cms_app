@@ -62,5 +62,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Alchemy CMS
-gem 'alchemy_cms', '~> 4.6.0'
+gem 'alchemy_cms', '~> 5.0.0'
 gem 'alchemy-devise', '~> 5.0.0'

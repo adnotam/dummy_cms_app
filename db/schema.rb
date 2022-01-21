@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_153716) do
+ActiveRecord::Schema.define(version: 2022_01_21_155114) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -143,6 +143,13 @@ ActiveRecord::Schema.define(version: 2022_01_21_153716) do
     t.integer "updater_id"
   end
 
+  create_table "alchemy_essence_nodes", force: :cascade do |t|
+    t.integer "node_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["node_id"], name: "index_alchemy_essence_nodes_on_node_id"
+  end
+
   create_table "alchemy_essence_pages", force: :cascade do |t|
     t.integer "page_id"
     t.datetime "created_at", null: false
@@ -257,14 +264,13 @@ ActiveRecord::Schema.define(version: 2022_01_21_153716) do
     t.integer "updater_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "site_id", null: false
+    t.string "menu_type", null: false
     t.index ["creator_id"], name: "index_alchemy_nodes_on_creator_id"
     t.index ["language_id"], name: "index_alchemy_nodes_on_language_id"
     t.index ["lft"], name: "index_alchemy_nodes_on_lft"
     t.index ["page_id"], name: "index_alchemy_nodes_on_page_id"
     t.index ["parent_id"], name: "index_alchemy_nodes_on_parent_id"
     t.index ["rgt"], name: "index_alchemy_nodes_on_rgt"
-    t.index ["site_id"], name: "index_alchemy_nodes_on_site_id"
     t.index ["updater_id"], name: "index_alchemy_nodes_on_updater_id"
   end
 
@@ -281,18 +287,17 @@ ActiveRecord::Schema.define(version: 2022_01_21_153716) do
     t.integer "rgt"
     t.integer "parent_id"
     t.integer "depth"
-    t.boolean "visible", default: false
     t.integer "locked_by"
     t.boolean "restricted", default: false
     t.boolean "robot_index", default: true
     t.boolean "robot_follow", default: true
     t.boolean "sitemap", default: true
-    t.boolean "layoutpage", default: false
+    t.boolean "layoutpage", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"
     t.integer "updater_id"
-    t.integer "language_id"
+    t.integer "language_id", null: false
     t.text "cached_tag_list"
     t.datetime "published_at"
     t.datetime "public_on"
