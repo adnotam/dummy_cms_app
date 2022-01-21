@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.7.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
@@ -68,7 +68,3 @@ gem 'alchemy_cms',
 gem 'alchemy-devise',
     github: 'AlchemyCMS/alchemy-devise',
     branch: '4.1-stable'
-
-gem 'alchemy-pg_search',
-    github: 'adnotam/alchemy-pg_search',
-    branch: 'alchemy_4'
