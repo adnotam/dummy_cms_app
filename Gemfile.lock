@@ -54,7 +54,7 @@ GEM
     alchemy-devise (4.1.0)
       alchemy_cms (>= 4.0.0.beta, < 4.99)
       devise (>= 4.0, < 4.99)
-    alchemy_cms (4.4.5)
+    alchemy_cms (4.5.1)
       active_model_serializers (~> 0.10.0)
       acts_as_list (>= 0.3, < 2)
       awesome_nested_set (~> 3.1)
@@ -129,7 +129,7 @@ GEM
       nokogiri
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.9.25)
+    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     gutentag (2.6.1)
@@ -301,7 +301,7 @@ PLATFORMS
 
 DEPENDENCIES
   alchemy-devise (~> 4.1.0)
-  alchemy_cms (~> 4.4.0)
+  alchemy_cms (~> 4.5.0)
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
