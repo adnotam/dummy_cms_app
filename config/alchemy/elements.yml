@@ -17,6 +17,3 @@
     type: EssenceRichtext
     default: :article_text
     hint: true
-
-- name: searchresults
-  unique: true
