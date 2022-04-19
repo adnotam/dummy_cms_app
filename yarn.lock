@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alchemy_cms/admin@~6.0.0-rc4":
-  version "6.0.0-rc4"
-  resolved "https://registry.yarnpkg.com/@alchemy_cms/admin/-/admin-6.0.0-rc4.tgz#0bbc9b12e6b00ad6a2531f8464cb9dc3f4a1554f"
-  integrity sha512-fcmamr1fUS06DzYi8hg6d0ZdVnL1Z6ps1+bchLRDwUwAJNqJ9hNcfAR3uOc8W4vYGt+L52ekuLbqwnd3BCn1cw==
+"@alchemy_cms/admin@~6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@alchemy_cms/admin/-/admin-6.0.0.tgz#0871ce393c975dbed59739900e9b8b1e54f3f62c"
+  integrity sha512-rPWf34SiaLiyTRcUrjtqVpLom/wIPgozUZjGxfPsG0MmhYudrIrZ5MG2/Go7qog/qRAODNjMxQcUgQCRVUpBFg==
   dependencies:
     flatpickr "^4.6.9"
     lodash-es "^4.17.21"
